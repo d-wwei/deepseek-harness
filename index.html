@@ -46,7 +46,7 @@ html[data-theme="dark"]{
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.76;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.76;text-autospace:normal;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--aurora)}
 .layout{display:grid;grid-template-columns:272px minmax(0,1fr);max-width:1200px;margin:0 auto}
 /* sidebar */
@@ -83,6 +83,8 @@ h2{font-family:var(--font-head);font-weight:700;font-size:23px;letter-spacing:-.
 h3{font-family:var(--font-head);font-weight:600;font-size:17.5px;margin:32px 0 11px}
 h4{font-family:var(--font-head);font-weight:600;font-size:15.5px;margin:22px 0 8px}
 p{margin:0 0 17px;text-wrap:pretty}
+/* 方案C：中文正文两端对齐 + 自动空格（用户真机选定） */
+.standfirst,p,li,.takeaway{text-align:justify}
 strong,b{font-weight:600}.key{color:var(--accent-deep);font-weight:600}.mute{color:var(--ink-mute)}
 code{font-family:var(--mono);font-size:.85em;color:var(--accent-deep);background:var(--accent-soft);padding:1px 6px;border-radius:6px}
 .lead{font-size:18px}
