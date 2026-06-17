@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中文排版对照 · DeepSeek Harness 提案</title>
+<style>
+  :root{--ink:#1b2336;--ink-soft:#49526a;--mute:#6b7385;--line:#e6e9f0;--accent:#1f5ed6;--bg:#f4f7fc;--card:#fff}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;padding:20px 16px 60px;-webkit-font-smoothing:antialiased}
+  h1{font-size:20px;margin:0 0 6px}
+  .lead{color:var(--mute);font-size:13px;margin:0 0 24px;line-height:1.6}
+  .opt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;margin:0 0 18px;box-shadow:0 12px 30px -22px rgba(20,30,60,.5)}
+  .tag{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.03em;
+    color:var(--accent);background:#e7f0ff;border-radius:999px;padding:3px 11px;margin-bottom:4px}
+  .name{font-weight:700;font-size:15px;margin:6px 0 2px}
+  .desc{color:var(--mute);font-size:12.5px;margin:0 0 12px;line-height:1.55}
+  .sample{font-size:16px;line-height:1.6;color:var(--ink-soft);border-left:3px solid var(--line);padding-left:13px}
+  /* A: 左对齐（当前线上） */
+  .A{text-align:left}
+  /* B: 两端对齐 */
+  .B{text-align:justify}
+  /* C: 两端对齐 + 中英自动空格 */
+  .C{text-align:justify;text-autospace:normal}
+  /* D: 左对齐 + 中英自动空格 + 禁则（业界主流做法） */
+  .D{text-align:left;text-autospace:normal;line-break:strict;text-wrap:pretty}
+  .foot{color:var(--mute);font-size:12px;margin-top:8px;line-height:1.6}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#eef1f7;padding:1px 5px;border-radius:5px}
+</style>
+</head>
+<body>
+  <h1>中文排版对照</h1>
+  <p class="lead">同一段正文 · 4 种对齐/换行方案 · 请在你的手机上看，挑一个你觉得最顺眼的，把字母（A/B/C/D）发给我，我就把整页统一改成那个。</p>
+
+  <div class="opt">
+    <span class="tag">A · 当前线上</span>
+    <div class="name">左对齐（ragged right）</div>
+    <div class="desc">现在线上就是这个。右缘自然参差，知乎 / 少数派 / Ant Design 文档都用这种。</div>
+    <p class="sample A">从第一个 Agent 产品开始，构建 DeepSeek 原生 Harness 生态。如果 DeepSeek 的长期目标是 AGI，那么 Harness / Agent 不只是产品层应用，而是模型进入真实复杂任务、形成数据飞轮和开源生态的关键系统。</p>
+  </div>
+
+  <div class="opt">
+    <span class="tag">B</span>
+    <div class="name">两端对齐 justify</div>
+    <div class="desc">右缘齐平、正式文档感。代价：含长英文词的行，中文字距可能被拉开（看第 2、3 行有没有大缝）。</div>
+    <p class="sample B">从第一个 Agent 产品开始，构建 DeepSeek 原生 Harness 生态。如果 DeepSeek 的长期目标是 AGI，那么 Harness / Agent 不只是产品层应用，而是模型进入真实复杂任务、形成数据飞轮和开源生态的关键系统。</p>
+  </div>
+
+  <div class="opt">
+    <span class="tag">C</span>
+    <div class="name">两端对齐 + 中英自动空格</div>
+    <div class="desc">在 B 基础上加 <code>text-autospace</code>，中英文之间间距更规整（新版 Safari/Chrome 才支持，旧版本退化为 B）。</div>
+    <p class="sample C">从第一个 Agent 产品开始，构建 DeepSeek 原生 Harness 生态。如果 DeepSeek 的长期目标是 AGI，那么 Harness / Agent 不只是产品层应用，而是模型进入真实复杂任务、形成数据飞轮和开源生态的关键系统。</p>
+  </div>
+
+  <div class="opt">
+    <span class="tag">D · 推荐</span>
+    <div class="name">左对齐 + 自动空格 + 禁则优化</div>
+    <div class="desc">业界主流的"精修左对齐"：<code>text-autospace</code> 规整中英间距 + <code>line-break:strict</code> 标点禁则 + <code>text-wrap:pretty</code> 平衡行长。右缘仍参差但更克制干净。</div>
+    <p class="sample D">从第一个 Agent 产品开始，构建 DeepSeek 原生 Harness 生态。如果 DeepSeek 的长期目标是 AGI，那么 Harness / Agent 不只是产品层应用，而是模型进入真实复杂任务、形成数据飞轮和开源生态的关键系统。</p>
+  </div>
+
+  <p class="foot">注：这页用系统字体做对比（看对齐行为，不看字形）。你选定后，我会用提案页自己的字体落地。<br>判断要点：看哪种<b>右缘</b>和<b>字距</b>组合你最能接受——A/D 右缘参差但字距均匀；B/C 右缘齐平但字距可能不均。</p>
+</body>
+</html>
