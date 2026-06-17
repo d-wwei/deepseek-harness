@@ -300,6 +300,27 @@ footer code{background:var(--surface);border:1px solid var(--line);color:var(--i
   .menubtn:focus-visible,.af-modal .x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .ct{font-size:1em;font-weight:700;line-height:1.3;margin:0 0 6px}
   a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  /* ===== mobile responsive hardening（微信内置浏览器兼容：用 hidden 不用 clip）===== */
+  h1,h2,h3,p,li,.standfirst,.takeaway,.ct,.eyebrow,.row .c,.al-h,.al-d,.q .t,.q p{overflow-wrap:break-word;word-break:break-word}
+  @media (max-width:600px){
+    html,body{overflow-x:hidden;max-width:100%}
+    body{font-size:15.5px}
+    .col{padding-left:16px;padding-right:16px}
+    h1{font-size:25px;line-height:1.2}
+    .parthead h2{font-size:22px}
+    h2{font-size:19.5px;margin-top:44px}
+    h3{font-size:16px}
+    .standfirst{font-size:16px;line-height:1.55}
+    .takeaway{font-size:14.5px;padding:15px 16px}
+    .eyebrow{font-size:11px}
+    .ct{font-size:14.5px}
+    .row .c p,.q p{font-size:14.5px}
+    .det-body{padding-left:16px;padding-right:16px;overflow-x:auto}
+    .det-body table{margin-left:0;width:100%}
+    .code{padding:14px 12px}
+    .code pre{font-size:11px;line-height:1.7}
+    .pill{font-size:11px}
+  }
 </style>
 </head>
 <body>
