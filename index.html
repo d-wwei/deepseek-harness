@@ -304,7 +304,7 @@ footer code{background:var(--surface);border:1px solid var(--line);color:var(--i
 	  .det-body:focus-visible,.code:focus-visible,.af-vp:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 	  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   /* ===== mobile responsive hardening（微信内置浏览器兼容：用 hidden 不用 clip）===== */
-  h1,h2,h3,p,li,.standfirst,.takeaway,.ct,.eyebrow,.row .c,.al-h,.al-d,.q .t,.q p{overflow-wrap:break-word;word-break:break-word}
+  h1,h2,h3,p,li,.standfirst,.takeaway,.ct,.eyebrow,.row .c,.al-h,.al-d,.q .t,.q p{overflow-wrap:break-word}
   @media (max-width:600px){
     html,body{overflow-x:hidden;max-width:100%}
     body{font-size:15.5px}
@@ -1188,7 +1188,13 @@ function setTheme(t){
   function onScroll(){ if(suppress) return; if(!ticking){ ticking=true; requestAnimationFrame(function(){ ticking=false; spy(); }); } }
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll,{passive:true});
-  links.forEach(function(a){a.addEventListener('click',function(){setActive(a);suppress=true;unlockSoon(500);var s=document.getElementById('side');if(s)s.classList.remove('open');});});
+  var sideEl=document.getElementById('side'), menuBtn=document.querySelector('.menubtn');
+  function closeMenu(){ if(!sideEl) return; sideEl.classList.remove('open'); if(menuBtn) menuBtn.setAttribute('aria-expanded','false'); document.body.classList.remove('toc-open'); }
+  function openMenu(){ if(!sideEl) return; sideEl.classList.add('open'); if(menuBtn) menuBtn.setAttribute('aria-expanded','true'); document.body.classList.add('toc-open'); }
+  if(menuBtn) menuBtn.addEventListener('click',function(e){ e.stopPropagation(); sideEl.classList.contains('open')?closeMenu():openMenu(); });
+  document.addEventListener('click',function(e){ if(sideEl&&sideEl.classList.contains('open')&&!sideEl.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sideEl&&sideEl.classList.contains('open')) closeMenu(); });
+  links.forEach(function(a){a.addEventListener('click',function(){setActive(a);suppress=true;unlockSoon(500);closeMenu();});});
   spy();
 })();
 </script>
